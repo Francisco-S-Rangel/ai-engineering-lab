@@ -20,8 +20,11 @@ chess game itself (chess.js + react-chessboard) with a server-side opponent.
 
 ### Phase 2
 - **Two RAG systems on purpose**, because they have different consumers: `.claude/rag/`
-  (keyword, dev-time, for Claude Code) vs `.claude/rag-chess/` (Chroma vectors,
-  runtime, grounds the opponent). Good illustration that "RAG" isn't one design.
+  (keyword, dev-time, for Claude Code, via `/search-repo`) vs `.claude/rag-chess/`
+  (Chroma vectors, runtime, grounds the opponent, via `/rebuild-rag`). Good
+  illustration that "RAG" isn't one design — the consumer drives the choice.
+  Kept the keyword RAG rather than deleting it as superseded, and gave it a command
+  so it's actually wired in instead of being a museum piece.
 - **Embeddings are local and free** via `@chroma-core/default-embed` — no OpenAI key.
   Chroma Cloud free tier is a $5 usage credit, not a flat vector cap. chromadb v3
   requires Node >= 20 (local Node is 22).
