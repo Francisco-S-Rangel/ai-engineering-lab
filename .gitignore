@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# generated RAG index — rebuild with: node .claude/rag/build-index.mjs
+.claude/rag/index.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
