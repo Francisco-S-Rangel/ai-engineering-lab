@@ -1,0 +1,14 @@
+.chess-game {
+  max-width: 28rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.chess-game__status {
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.chess-game__board {
+  width: 100%;
+}

@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
 
 # generated RAG index — rebuild with: node .claude/rag/build-index.mjs
 .claude/rag/index.json
