@@ -43,12 +43,23 @@ chess game itself (chess.js + react-chessboard) with a server-side opponent.
   react-hooks v7 forbids reading `ref.current` during render.
 - `build-index.mjs` uses `upsert` (not `add`) so /rebuild-rag is safely re-runnable.
 
+### Docs & deploy (final pass)
+- README rewritten from the Vite default into a real front door; `docs/architecture.md`
+  holds the deep dive including an honest "what went wrong" section.
+- GitHub Pages workflow added. `vite.config.ts` sets `base` only on `build`, so local
+  dev stays at `/` while the deployed build uses the `/ai-engineering-lab/` subpath.
+- The hosted demo runs the **fallback** opponent by design: `/api/opponent-move` is Vite
+  dev middleware and doesn't exist in a static deploy. Documented, not hidden.
+- Decided against Ollama/local-model support — the LLM half was already proven by the
+  fallback chain, and installing a model just to demo it was over-engineering.
+
 ## Next steps
 
+- **Enable GitHub Pages**: repo Settings → Pages → Source = "GitHub Actions", then
+  re-run the workflow. Until then the deploy job fails and the URL 404s.
 - Add real credentials to `.env` (ANTHROPIC_API_KEY + CHROMA_*), then run
   `/rebuild-rag` and confirm the opponent plays with `source: "llm"` instead of
-  `"fallback"`.
-- `test-writer` sub-agent registers on next session start (Claude Code loads agent
-  definitions at startup).
+  `"fallback"`. (Anthropic API needs paid credits — deliberately deferred.)
 - Optional cleanup: unused Vite starter assets (hero.png, react.svg, vite.svg,
   public/icons.svg) are now orphaned.
+- Not wired: `CHROMA_HOST` for non-us-east-1 Chroma regions.
