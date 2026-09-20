@@ -50,6 +50,8 @@ function opponentApiPlugin(): Plugin {
 }
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  // Built assets are served from the repo subpath on GitHub Pages; dev stays at root.
+  base: command === 'build' ? '/ai-engineering-lab/' : '/',
   plugins: [react(), opponentApiPlugin()],
-})
+}))
